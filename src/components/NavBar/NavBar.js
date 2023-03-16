@@ -7,11 +7,16 @@ const NavBar = () => {
     return (
         <nav className="Navigation">
         <ul className="List-ul">
-            <li className="NavLink">Principal</li>
-            <li className="NavLink">Contacto</li>
-            <li className="NavLink">Acerca de..</li>
+            <li className="NavLink">
+                <a href="https://www.pokemon.com/es"> Principal </a>
+            </li>
+            <li className="NavLink">
+                <a href="https://www.pokemon.com/es"> Contacto </a>
+            </li>
+            <li className="NavLink">
+                <a href="https://www.pokemon.com/es"> Acerca de.. </a>
+            </li>
             <li> <Cart /> </li>
-
         </ul>
 
         </nav>
