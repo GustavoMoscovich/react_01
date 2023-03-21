@@ -2,8 +2,10 @@ import React, {Component} from "react";
 import './App.css';
 
 // Componentes
-import Header from  "./components/Header/Header";
+//import Header from  "./components/Header/Header";
 import NavBar from  "./components/NavBar/NavBar";
+import BloqueSuperior from "./components/BloqueSuperior/BloqueSuperior";
+
 
 
 class App extends Component {
@@ -14,7 +16,7 @@ class App extends Component {
         <NavBar/>
       </div>
       <div className="App">
-        <Header tituloPrinc="POK-Ecommerce" tituloSecund="El Ecommerce de los amantes de Pokemon"/>
+        <BloqueSuperior tituloPrinc="POK-Ecommerce" tituloSecund="El Ecommerce de los amantes de Pokemon"/>
       </div>
 
 
