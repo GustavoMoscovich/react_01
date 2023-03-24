@@ -5,21 +5,21 @@ import './App.css';
 //import Header from  "./components/Header/Header";
 import NavBar from  "./components/NavBar/NavBar";
 import BloqueSuperior from "./components/BloqueSuperior/BloqueSuperior";
-
-
+import Pokemones from "./components/Pokemones/Pokemones";
 
 class App extends Component {
   render() {
     return (
       <div>
-      <div className="App">
-        <NavBar/>
-      </div>
-      <div className="App">
-        <BloqueSuperior tituloPrinc="POK-Ecommerce" tituloSecund="El Ecommerce de los amantes de Pokemon"/>
-      </div>
+        <div className="App">
+          <NavBar/>
+        </div>
+        <div className="App">
+          <BloqueSuperior tituloPrinc="POK-Ecommerce" tituloSecund="El Ecommerce de los amantes de Pokemon"/>
 
-
+        </div>
+        <p>ACA IRIAN LAS CARDS</p>
+        <Pokemones />
       </div>
     );
   }
