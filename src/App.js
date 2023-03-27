@@ -5,7 +5,7 @@ import './App.css';
 //import Header from  "./components/Header/Header";
 import NavBar from  "./components/NavBar/NavBar";
 import BloqueSuperior from "./components/BloqueSuperior/BloqueSuperior";
-import Pokemones from "./components/Pokemones/Pokemones";
+import Gridprod from "./components/Gridrprod/Gridprod";
 
 class App extends Component {
   render() {
@@ -15,11 +15,9 @@ class App extends Component {
           <NavBar/>
         </div>
         <div className="App">
-          <BloqueSuperior tituloPrinc="POK-Ecommerce" tituloSecund="El Ecommerce de los amantes de Pokemon"/>
-
+          <BloqueSuperior tituloPrinc="Only Smart Watchs" />
         </div>
-        <p>ACA IRIAN LAS CARDS</p>
-        <Pokemones />
+        <Gridprod />
       </div>
     );
   }
