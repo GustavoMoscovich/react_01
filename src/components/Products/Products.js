@@ -2,6 +2,8 @@ import React, {useState, useEffect} from 'react';
 import "./Products.css"
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
+import CardActions from '@mui/material/CardActions';
+import Button from "@mui/material/Button";
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import { CardActionArea } from '@mui/material';
@@ -9,7 +11,8 @@ import Grid from '@mui/material/Grid';
 import { experimentalStyled as styled } from '@mui/material/styles';
 import Paper from '@mui/material/Paper';
 import { shadows } from '@mui/system';
-
+import axios from "axios";
+import { Link } from "react-router-dom";
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
@@ -28,36 +31,42 @@ const cardStyle = {
 const Products = () => {
 
     const [prod, setProd] = useState([]);
-    
+/*    
     useEffect(() => {
       fetch('https://641f0c51f228f1a83eaf6212.mockapi.io/mi-ecommerce/v1/articles')
       .then((response) => response.json())  
       .then((json) => setProd(json));
   }, []);
+*/
+
+    useEffect(() => {
+      axios("https://641f0c51f228f1a83eaf6212.mockapi.io/mi-ecommerce/v1/articles").then((res) =>
+      setProd(res.data)
+      );
+    }, []);
 
   return ( 
-        prod.map((prodItem) => { 
-          
+        prod.map((prodItem) => {           
           return (
-            <Grid xs={3} sm={4} md={4} key={prodItem.id}>
+            <Grid xs={3} sm={4} md={4} key={prodItem.id} >
               <Item>
                 <div  >
-                  <Card sx={{ maxWidth: 345, boxShadow: 10 }} style={cardStyle}>
-                    <CardActionArea>
-                      <CardMedia
-                        component="img"
-                        image={prodItem.image}
-                      />
-                      <CardContent>
-                        <Typography gutterBottom variant="h5" component="div">
-                          {prodItem.name}
-                        </Typography>
-                        <Typography variant="body2" color="text.secondary">
-                            {prodItem.price}
-                        </Typography>
-                      </CardContent>
-                    </CardActionArea>
-                  </Card>
+                    <Card sx={{ maxWidth: 345, boxShadow: 10 }} style={cardStyle} >
+                      <CardActionArea >
+                        <CardMedia
+                          component="img"
+                          image={prodItem.image}
+                        />
+                        <CardContent  >
+                          <Typography gutterBottom variant="h5" component="div">
+                            {prodItem.name}
+                          </Typography>
+                          <Typography variant="body2" color="text.secondary">
+                              <p className='prodprice'> $ {prodItem.price} </p>
+                          </Typography>
+                        </CardContent>
+                      </CardActionArea>
+                    </Card>
                 </div>
               </Item>
             </Grid>
