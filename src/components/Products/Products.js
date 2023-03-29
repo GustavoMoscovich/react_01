@@ -2,8 +2,6 @@ import React, {useState, useEffect} from 'react';
 import "./Products.css"
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
-import CardActions from '@mui/material/CardActions';
-import Button from "@mui/material/Button";
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import { CardActionArea } from '@mui/material';
@@ -12,6 +10,7 @@ import { experimentalStyled as styled } from '@mui/material/styles';
 import Paper from '@mui/material/Paper';
 import { shadows } from '@mui/system';
 import axios from "axios";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { Link } from "react-router-dom";
 
 const Item = styled(Paper)(({ theme }) => ({
@@ -51,6 +50,7 @@ const Products = () => {
             <Grid xs={3} sm={4} md={4} key={prodItem.id} >
               <Item>
                 <div  >
+                  <Link to={`/user-detail/${prodItem.id}`}>
                     <Card sx={{ maxWidth: 345, boxShadow: 10 }} style={cardStyle} >
                       <CardActionArea >
                         <CardMedia
@@ -67,6 +67,7 @@ const Products = () => {
                         </CardContent>
                       </CardActionArea>
                     </Card>
+                  </Link>
                 </div>
               </Item>
             </Grid>
