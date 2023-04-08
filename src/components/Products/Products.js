@@ -38,9 +38,9 @@ const cardStyle = {
 
 const Products = (props) => {
 
-  const url = `https://641f0c51f228f1a83eaf6212.mockapi.io/mi-ecommerce/v1/articles/?brand=${props.brand}`
+    const url = `https://641f0c51f228f1a83eaf6212.mockapi.io/mi-ecommerce/v1/articles/?brand=${props.brand}`
 
-  const [prod, setProd] = useState([]);
+    const [prod, setProd] = useState([]);
 
     useEffect(() => {
         axios(url).then((res) =>
@@ -48,6 +48,7 @@ const Products = (props) => {
         );
       }, [url]);
 
+    const addToCart = (()=>{console.log("Agregar al carrito")})
 
     return ( 
           prod.map((prodItem) => {           
@@ -75,7 +76,10 @@ const Products = (props) => {
                           </Link >
 
                           <CardActions disableSpacing >
-                            <IconButton aria-label="Lo Quiero">
+                            <IconButton 
+                                aria-label="Lo Quiero"
+                                onClick={ addToCart }
+                            >
                               <AddShoppingCartIcon fontSize="large" />
                             </IconButton>
                           </CardActions>
