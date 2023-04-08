@@ -5,6 +5,9 @@ import {
   CardMedia,
   Typography,
   CardActionArea,
+  CardActions,
+  IconButton,
+
 } from "@mui/material";
 import "./Products.css";
 import Grid from '@mui/material/Grid';
@@ -14,6 +17,7 @@ import { shadows } from '@mui/system';
 import axios from "axios";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { Link } from "react-router-dom";
+import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 
 
 const Item = styled(Paper)(({ theme }) => ({
@@ -28,7 +32,7 @@ const Item = styled(Paper)(({ theme }) => ({
 
 const cardStyle = {
   display: 'block',
-  height: '450px'
+  height: '550px'
 }
 
 
@@ -42,7 +46,8 @@ const Products = (props) => {
         axios(url).then((res) =>
         setProd(res.data)
         );
-      }, []);
+      }, [url]);
+
 
     return ( 
           prod.map((prodItem) => {           
@@ -50,24 +55,32 @@ const Products = (props) => {
               <Grid xs={3} sm={4} md={4} key={prodItem.id} >
                 <Item>
                   <div  >
-                    <Link to={`/ProdDetail/${prodItem.id}`}>
                       <Card sx={{ maxWidth: 345, boxShadow: 10 }} style={cardStyle} >
                         <CardActionArea >
+                          <Link to={`/ProdDetail/${prodItem.id}`}>
+
                           <CardMedia
                             component="img"
                             image={prodItem.image}
                           />
+                         
                           <CardContent  >
-                            <Typography gutterBottom variant="h5" component="div">
-                              {prodItem.name}
+                            <Typography >
+                              <p className='prodname'> {prodItem.name} </p>
                             </Typography>
-                            <Typography variant="body2" color="text.secondary">
+                            <Typography >
                                 <p className='prodprice'> $ {prodItem.price} </p>
                             </Typography>
                           </CardContent>
+                          </Link >
+
+                          <CardActions disableSpacing >
+                            <IconButton aria-label="Lo Quiero">
+                              <AddShoppingCartIcon fontSize="large" />
+                            </IconButton>
+                          </CardActions>
                         </CardActionArea>
                       </Card>
-                    </Link>
                   </div>
                 </Item>
               </Grid>

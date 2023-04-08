@@ -1,5 +1,5 @@
 .MuiCardMedia-img {
-    height: 320px;
+    height: 280px;
     width: 320px;
 }
 
@@ -11,7 +11,7 @@
 }
 
 .prodname {
-    font-size: 25px;
+    font-size: 20px;
     font-weight: bold;
     color: black;
 }
