@@ -1,5 +1,5 @@
 import "./NavBar.css";
-import Cart from "../Cart/Cart";
+import CartIcon from "../CartIcon/CartIcon";
 
 import { Link } from "react-router-dom";
 
@@ -22,7 +22,7 @@ const NavBar = () => {
         <Link className="Link" to="/Xiaomi">
           Xiaomi
         </Link>
-        <li> <Cart /> </li>
+        <li> <CartIcon /> </li>
       </ul>
     </nav>
   );

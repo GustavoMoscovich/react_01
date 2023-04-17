@@ -7,24 +7,42 @@ import Header from "./components/Header/Header";
 import NavBar from "./components/NavBar/NavBar";
 
 // PAGES
-import Home from "./pages/Home/Home";
-import ProdDetail from "./pages/ProdDetail/ProdDetail";
+import ItemListContainer from "./pages/ItemListContainer/ItemListContainer";
+import ItemDetailContainer from "./pages/ItemDetailContainer/ItemDetailContainer";
 import ErrorPage from "./pages/ErrorPage/ErrorPage";
+import Cart from "./pages/Cart/Cart"
+import Sell from "./pages/Sell/Sell";
+
+// Firebase
+import { db } from "./components/Firebase/FirebaseConfig"
+
+// CONTEXT
+import { ProductsProvider } from "./context/ContextProd";
+import { CartServices } from "./context/ContextCart";
+
 
 const App = () => {
+
   return (
     <Router>
-      <div className="App">
-        <NavBar />
-        <Header />
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/:brand" element={<Home />} />
-          <Route path="/ProdDetail/:id" element={<ProdDetail />} />
-          <Route path="*" element={<ErrorPage />} />
-        </Routes>
-      </div>
+      <ProductsProvider  >
+        <CartServices >
+          <div className="App">
+            <NavBar />
+            <Header />
+            <Routes>
+              <Route path="/" element={<ItemListContainer />} />
+              <Route path="/:brand" element={<ItemListContainer />} />
+              <Route path="/ItemDetailContainer/:id" element={<ItemDetailContainer />} />
+              <Route path="*" element={<ErrorPage />} />
+              <Route path="/Cart" element={<Cart />} />
+              <Route path="/Sell" element={<Sell />} />
+            </Routes>
+          </div>
+        </CartServices>
+      </ProductsProvider>
     </Router>
+
   );
 };
 

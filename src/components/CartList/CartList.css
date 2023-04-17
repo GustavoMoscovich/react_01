@@ -1,0 +1,18 @@
+.tarjetas {
+    display: flex;
+    margin-left: 50px;
+    width: 600px;
+    align-items: center;
+    justify-content: space-between;
+} 
+
+.tarjetas-img {
+    width: 100px;
+    height: 100px;
+    margin-right: 50px;
+}
+
+.tarjetas-txt {
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+}

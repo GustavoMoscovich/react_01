@@ -1,24 +1,31 @@
-import React, {useState, useEffect} from "react";
+import React, { useContext} from "react";
 import {
   Card,
   CardContent,
   CardMedia,
   Typography,
-  CardActionArea,
   CardActions,
-  IconButton,
+  Stack,
+  Button,
+  Input
 
 } from "@mui/material";
+
 import "./Products.css";
 import Grid from '@mui/material/Grid';
 import { experimentalStyled as styled } from '@mui/material/styles';
 import Paper from '@mui/material/Paper';
-import { shadows } from '@mui/system';
-import axios from "axios";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+//import { shadows } from '@mui/system';
+//import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { Link } from "react-router-dom";
-import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
+import InputSpinner from 'react-bootstrap-input-spinner'
 
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
+// Context
+import {ProductList} from "../../context/ContextProd"
+import { ContextCart} from "../../context/ContextCart"
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
@@ -29,61 +36,58 @@ const Item = styled(Paper)(({ theme }) => ({
   color: theme.palette.text.secondary,
 }));
 
-
 const cardStyle = {
   display: 'block',
   height: '550px'
 }
 
 
-const Products = (props) => {
+const Products = () => {
 
-    const url = `https://641f0c51f228f1a83eaf6212.mockapi.io/mi-ecommerce/v1/articles/?brand=${props.brand}`
+    const {addProductCart} = useContext(ContextCart) // Habilito la función del context del carrito para adicionar artículos al mismo
 
-    const [prod, setProd] = useState([]);
+    const {products} = useContext(ProductList) // Le pido al context que me devuelva la lista de productos
 
-    useEffect(() => {
-        axios(url).then((res) =>
-        setProd(res.data)
-        );
-      }, [url]);
-
-    const addToCart = (()=>{console.log("Agregar al carrito")})
+    // Esto lo uso una sola vez para pasar todos los productos de la API que venía usando a firebase
+    //prod.map((item) => { return(  addDoc(collection(db, "productos"), { item    }))})
+    //
+    //const addToCart = ((prodItem)=>{addProductCart({prodItem})})
 
     return ( 
-          prod.map((prodItem) => {           
+      products.map((prodItem) => {      
+          //console.log("Proditem: ",prodItem)     
             return (
               <Grid xs={3} sm={4} md={4} key={prodItem.id} >
                 <Item>
                   <div  >
                       <Card sx={{ maxWidth: 345, boxShadow: 10 }} style={cardStyle} >
-                        <CardActionArea >
-                          <Link to={`/ProdDetail/${prodItem.id}`}>
+                        <div >
+                          <Link to={`/ItemDetailContainer/${prodItem.id}`}>
 
                           <CardMedia
                             component="img"
-                            image={prodItem.image}
+                            image={prodItem.item.image}
                           />
                          
                           <CardContent  >
                             <Typography >
-                              <p className='prodname'> {prodItem.name} </p>
+                              <p className='prodname'> {prodItem.item.name} </p>
                             </Typography>
                             <Typography >
-                                <p className='prodprice'> $ {prodItem.price} </p>
+                                <p className='prodprice'> $ {prodItem.item.price} </p>
                             </Typography>
                           </CardContent>
                           </Link >
 
                           <CardActions disableSpacing >
-                            <IconButton 
-                                aria-label="Lo Quiero"
-                                onClick={ addToCart }
-                            >
-                              <AddShoppingCartIcon fontSize="large" />
-                            </IconButton>
+                            <Stack spacing={2} direction="row" justifyContent="center" alignItems="center">
+                              <Button variant="contained" onClick={() => addProductCart(prodItem,Number(document.getElementById(prodItem.id).value))} >Lo Quiero!</Button>
+                              <Input className="cantidad" type="number"  min="1" max="9" id={prodItem.id} ></Input>
+                            </Stack>
+                            <ToastContainer autoClose={1500} theme="colored" />
+
                           </CardActions>
-                        </CardActionArea>
+                        </div>
                       </Card>
                   </div>
                 </Item>
