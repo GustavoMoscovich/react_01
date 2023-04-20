@@ -1,0 +1,23 @@
+.CartMainContainer {
+    display: flex;
+
+
+}
+
+.CartProductList {
+    flex: 2;
+}
+
+.CartCustomerData {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.totaldata {
+    font-family:'Courier New', Courier, monospace;
+    font-size: 25px;
+    font-weight: bold;
+}

@@ -3,8 +3,6 @@ import Card from '@mui/material/Card';
 import {  Button } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
 import "./CartList.css"
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
 
 // Context
 import { ContextCart} from "../../context/ContextCart"
@@ -25,7 +23,7 @@ const CartList = () => {
                     <p>{prod.name}</p>
                     <p>Precio: $ {prod.price}</p>
                     <p>Cant: {prod.unids} </p>
-                  </div>
+                  </div>                  
                   <div>
                     <Button variant="contained" startIcon={<DeleteIcon />} onClick={() => deleteProductCart(prod.id)} >Eliminar</Button>
                   </div>

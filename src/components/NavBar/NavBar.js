@@ -1,5 +1,6 @@
 import "./NavBar.css";
 import CartIcon from "../CartIcon/CartIcon";
+import BrandMenu from "../BrandMenu/BrandMenu"
 
 import { Link } from "react-router-dom";
 
@@ -7,22 +8,17 @@ const NavBar = () => {
   return (
     <nav className="Navigation">
       <ul className="List-ul">
-        <Link className="Link" to="/*">
+        <Link className="Link" to="/">
           Home
         </Link>
-        <Link className="Link" to="/Colmi">
-          Colmi
+        <BrandMenu />
+        <Link className="Link" to="/Contact">
+          Contacto
         </Link>
-        <Link className="Link" to="/Garmin">
-          Garmin
+        <Link className="Link" to="/About">
+          Acerca de Nosotros
         </Link>
-        <Link className="Link" to="/Samsung">
-          Samsung
-        </Link>
-        <Link className="Link" to="/Xiaomi">
-          Xiaomi
-        </Link>
-        <li> <CartIcon /> </li>
+        <CartIcon />
       </ul>
     </nav>
   );

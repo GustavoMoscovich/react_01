@@ -15,13 +15,7 @@ import "./Products.css";
 import Grid from '@mui/material/Grid';
 import { experimentalStyled as styled } from '@mui/material/styles';
 import Paper from '@mui/material/Paper';
-//import { shadows } from '@mui/system';
-//import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { Link } from "react-router-dom";
-import InputSpinner from 'react-bootstrap-input-spinner'
-
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
 
 // Context
 import {ProductList} from "../../context/ContextProd"
@@ -41,28 +35,21 @@ const cardStyle = {
   height: '550px'
 }
 
-
 const Products = () => {
 
     const {addProductCart} = useContext(ContextCart) // Habilito la función del context del carrito para adicionar artículos al mismo
 
     const {products} = useContext(ProductList) // Le pido al context que me devuelva la lista de productos
 
-    // Esto lo uso una sola vez para pasar todos los productos de la API que venía usando a firebase
-    //prod.map((item) => { return(  addDoc(collection(db, "productos"), { item    }))})
-    //
-    //const addToCart = ((prodItem)=>{addProductCart({prodItem})})
-
     return ( 
       products.map((prodItem) => {      
-          //console.log("Proditem: ",prodItem)     
             return (
               <Grid xs={3} sm={4} md={4} key={prodItem.id} >
                 <Item>
                   <div  >
                       <Card sx={{ maxWidth: 345, boxShadow: 10 }} style={cardStyle} >
                         <div >
-                          <Link to={`/ItemDetailContainer/${prodItem.id}`}>
+                          <Link to={`/item/${prodItem.id}`}>
 
                           <CardMedia
                             component="img"
@@ -84,8 +71,6 @@ const Products = () => {
                               <Button variant="contained" onClick={() => addProductCart(prodItem,Number(document.getElementById(prodItem.id).value))} >Lo Quiero!</Button>
                               <Input className="cantidad" type="number"  min="1" max="9" id={prodItem.id} ></Input>
                             </Stack>
-                            <ToastContainer autoClose={1500} theme="colored" />
-
                           </CardActions>
                         </div>
                       </Card>
